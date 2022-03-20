@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+<h1><%= current_user.email if current_user %></h1>
+<p><%= @user_gid if current_user %></p>
+<%= render 'tweets/form', tweet: Tweet.new %>
+<% tweets_channel = current_user ? "private_tweets" : "public_tweets" %>
+<%= turbo_stream_from tweets_channel, id: tweets_channel %>
+<% likes_channel = [@user_gid, 'private_likes'] %>
+<%= turbo_stream_from likes_channel %>
+<div id="<%= tweets_channel %>">
+  <% @tweets.each do |tweet| %>
+    <% if current_user %>
+      <%= render "tweets/private_tweet", 
+        tweet: tweet, 
+        like_status: current_user.liked?(tweet) %>
+    <% else %>
+      <%= render "tweets/public_tweet", tweet: tweet %>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "New tweet", new_tweet_path %>

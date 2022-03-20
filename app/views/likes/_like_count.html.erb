@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "#{dom_id(tweet)}_public_likes" do %>
+  <%= turbo_stream_from "#{dom_id(tweet)}_public_likes" %>
+  <%= pluralize(tweet.likes.count, "Like") %>
+<% end %>

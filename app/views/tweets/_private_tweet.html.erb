@@ -1,0 +1,9 @@
+<div id="<%= dom_id tweet %>">
+  <%= render 'likes/private_button', 
+    tweet: tweet, 
+    like_status: like_status %>
+  <%= render "tweets/body", tweet: tweet %>
+  <p>
+    <%= link_to "Show this tweet", tweet %>
+  </p>
+</div>
