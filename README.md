@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+Based on this ticket: https://github.com/hotwired/turbo-rails/issues/47
